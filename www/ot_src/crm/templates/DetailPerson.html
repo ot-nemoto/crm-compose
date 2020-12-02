@@ -1,0 +1,35 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+	<form name="form1" method="post" action="?ac=Person&mode=mod&pid={{$smarty.get.pid}}">
+		<div id="title">
+			<span>顧客管理ツール&nbsp;&nbsp;担当者画面</span>
+		</div>
+		{{include file='./common/SiteLink.html'}}
+		<hr>
+		<div id="info">
+			&nbsp;&nbsp;■&nbsp;<span>以下の各項目を入力して『この担当者を登録する』ボタンをクリックすることで担当者の情報を登録することができます。</span>
+		</div>
+		<div id="main">
+			<div id="left_content">
+				■会社情報
+				{{include file='./parts/CompanyView.html'}}
+			</div>
+			<div id="right_content">
+				{{include file='./parts/SectionView.html'}}
+				{{include file='./parts/PersonView.html'}}
+			</div>
+			<div id="clear">
+			</div>
+		</div>
+		<div id="command_panel">
+			<input type="submit" name="PersonRegisterButton" value="この担当者を編集する" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;PersonRegisterButton&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="PersonRegisterButton">
+			<br />
+			<br />
+			<a href="javascript:history.back();">戻る</a>
+		</div>
+		<hr>
+		{{include file='./common/SiteLink.html'}}
+		<hr>
+	</form>
+{{include file='./common/Footer.html'}}

@@ -1,0 +1,39 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+    <form name="form1" method="post" action="?ac=RegistCompany&mode={{$smarty.get.mode}}">
+        <div id="title">
+            <span id="HeaderControl1_TitleControl1_TitleLabel">顧客管理ツール&nbsp;&nbsp;会社画面</span>
+        </div>
+        {{include file='./common/SiteLink.html'}}
+        <hr>
+        <div id="info">
+            <span id="InformationTitleControl_TitleLabel">以下の各項目を入力して『この会社を登録する』ボタンをクリックすることで会社の情報を登録することができます。</span><br/>
+        </div>
+        <br />
+        {{include file='./common/MessageArea.html'}}
+        <div id="main">
+            <div id="left_content">
+                ■会社情報
+                {{include file='./parts/CompanyInput.html'}}
+                <input type="hidden" name="cid" value="{{$companyInfo.CompanyID}}" />
+            </div>
+            <div id="right_content">
+                {{include file='./parts/SectionList.html'}}
+                {{include file='./parts/PersonList.html'}}
+            </div>
+            <div id="clear">
+            </div>
+        </div>
+        <br>
+        <div id="command_panel">
+            <input type="submit" name="btnCompanyRegist" value="この会社を登録する" onclick="">
+            {{if !empty($companyInfo.CompanyID)}}
+                <input type="submit" name="btnCompanyDelete" value="この会社を削除する" onClick="return confirm('削除します。\nよろしいですか？');">
+            {{/if}}
+        </div>
+        <hr>
+        {{include file='./common/SiteLink.html'}}
+        <hr>
+    </form>
+{{include file='./common/Footer.html'}}

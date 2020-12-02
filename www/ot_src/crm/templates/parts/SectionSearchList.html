@@ -1,0 +1,54 @@
+<div id="SearchResultPanel">
+	<div>
+		<div id="CompanySearchResultPanel" style="overflow:auto;">
+			<div style="border: thin inset #006600; background-color: #99FF99;">&nbsp;
+				<span>部署検索結果</span>
+			</div>
+			<br />
+			<div>
+				{{if !empty($sectionList) && is_array($sectionList)}}
+				<div style="font-size:smaller">
+					<span style="color:#009900;">条件に該当する部署が{{$sectionCount}}件見つかりました。</span>&nbsp;
+				</div>
+					<table cellspacing="1" cellpadding="2" rules="all" border="1" id="CompanySearchResultGridView" style="color:Black;background-color:White;border-color:#333333;border-width:1px;border-style:Inset;font-size:Small;;width:100%">
+						<tr style="color:Black;background-color:#CCFFCC;font-weight:normal;">
+							<th scope="col" width="20%">会社名</th>
+							<th scope="col" width="25%">部署名</th>
+							<th scope="col" width="30%">住所</th>
+							<th scope="col" width="25%">備考</th>
+						</tr>
+						{{foreach from=$sectionList item=v}}
+						<tr style="background-color:{{cycle values="#f0f8ff,#FFFFFF"}};">
+							<td>
+								<a href="?ac=Company&mode=ref&cid={{$v.CompanyID}}">{{$v.CompanyName}}</a>
+							</td>
+							<td>
+								<a href="?ac=Section&mode=ref&sid={{$v.SectionID}}">{{$v.SectionName}}</a>
+							</td>
+							<td>
+								<span>{{$v.ZipCode}}</span>&nbsp;
+								<span>{{$v.Address1}}</span>&nbsp;
+								<span>{{$v.Address2}}</span>
+								<br>
+								<span>{{$v.Address3}}</span>
+							</td>
+							<td>
+								<span>
+									{{$v.Note|mb_truncate:50:"..."}}
+								</span>
+							</td>
+						</tr>
+						{{/foreach}}
+					</table>
+					<div align="left">
+						{{paging target='sPage' total_count=$sectionCount page_count=$smarty.const.SECTION_LIST_MAX_COUNT }}
+					</div>
+				{{else}}
+					対象の部署は存在しません。
+				{{/if}}
+			</div>
+		<br>
+		<hr>
+		</div>
+	</div>
+</div>

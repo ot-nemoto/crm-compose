@@ -1,2 +1,5 @@
-/mysql/data/*
-!/mysql/data/.gitkeep
+/mssql/strage/*
+!/mssql/strage/.gitkeep
+/mssql/tmp/*
+!/mssql/tmp/.gitkeep
+/www/ot_src/work

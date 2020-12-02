@@ -1,0 +1,112 @@
+<table class="content_table">
+    <tr>
+        <td class="td_title">
+            <span>会社名</span>
+        </td>
+        <td class="td_input">
+            <input name="txtCompanyName" type="text" maxlength="100" class="txt_reqire text_normal" value="{{$companyInfo.CompanyName}}">
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>略称</span>
+        </td>
+        <td class="td_input">
+            <input name="txtShortCompanyName" type="text" maxlength="100" class="text_normal" value="{{$companyInfo.ShortCompanyName}}"><br/>
+            <font style="color:#4169E1; font-size:80%">※. 「略称」も検索対象に含まれます。</font>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>頭文字</span>
+        </td>
+        <td class="td_input">
+            <select name="cmbIndexCompanyName" class="cmb_add">
+                {{company_index_list val=$companyInfo.IndexCompanyName}}
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>郵便番号</span>
+        </td>
+        <td class="td_input">
+            <input name="txtCompanyZipCode1" type="text" maxlength="3" class="zip1" value="{{$companyInfo.ZipCode|mb_substr:0:3}}">&nbsp;-&nbsp; 
+            <input name="txtCompanyZipCode2" type="text" maxlength="4" class="zip2" value="{{$companyInfo.ZipCode|mb_substr:4:4}}">
+            <div>
+                <div style="color:#009900;font-size:smaller">（例）123-4567</div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>住所</span>
+        </td>
+        <td class="td_input">
+            {{include file='./common/PrefectureInput.html' prefix='Company' selectVal=$companyInfo.Address1}}
+            <br />
+            <input name="txtCompanyAddress2" type="text" maxlength="50" class="txt_add" value="{{$companyInfo.Address2}}">&nbsp; 
+            <span style="font-size:smaller">(市区町村)</span>&nbsp;
+            <br>
+            <textarea name="txtCompanyAddress3" class="txt_area_add3">{{$companyInfo.Address3}}</textarea>
+            <div>
+                <font style="color:#4169E1; font-size:80%">
+                    ※. 名刺(等)記載の所在地情報が明らかにその会社の代表所在地ではない場合(支店, 拠点営業所等)は、郵便番号や住所は「部署情報」へ入力してください。
+                    その場合は、会社情報の郵便言号や住所は入力しなくて構いません。
+                </font>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>電話番号</span>
+        </td>
+        <td class="td_input">
+            <input name="txtCompanyTelephoneNumber1" type="text" maxlength="50" class="text_phone" value="{{$companyInfo.TelephoneNumber1}}">&nbsp; 
+            <input name="txtCompanyTelephoneNumber2" type="text" maxlength="50" class="text_phone" value="{{$companyInfo.TelephoneNumber2}}">
+            <div>
+                <div style="color:#009900;font-size:smaller">（例）090-1234-5678(携帯)</div>
+            </div>
+            <div>
+                <font style="color:#4169E1; font-size:80%">
+                    ※. 会社代表番号の場合は入力してください。代表番号かどうか不明な場合は入力しなくて構いません。
+                </font>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>FAX番号</span>
+        </td>
+        <td class="td_input">
+            <input name="txtCompanyFaxNumber1" type="text" maxlength="50" class="text_phone" value="{{$companyInfo.FaxNumber1}}">&nbsp; 
+            <div style="color:#009900;font-size:smaller">
+                （例）03-1234-5678
+            </div>
+            <div>
+                <font style="color:#4169E1; font-size:80%">
+                    ※. 会社代表番号の場合は入力してください。代表番号かどうか不明な場合は入力しなくて構いません。
+                </font>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>メールアドレス</span>
+        </td>
+        <td class="td_input">
+            <input name="txtCompanyMailAddress1" type="text" maxlength="255" class="text_normal" value="{{$companyInfo.MailAddress1}}">
+            <div style="color:#009900;font-size:smaller">
+                （例）sample@opentone.co.jp
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>備考</span>
+        </td>
+        <td class="td_input">
+            <textarea name="txtCompanyNote" class="txt_area">{{$companyInfo.Note}}</textarea>
+        </td>
+    </tr>
+</table>

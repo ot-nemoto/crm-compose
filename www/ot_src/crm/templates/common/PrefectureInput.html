@@ -1,0 +1,29 @@
+<script type="text/javascript">
+	//<![CDATA[
+	function change{{$prefix}}PrefInput() {
+
+		document.getElementById("cmb{{$prefix}}Address").style.display = "none";
+		document.getElementById("txt{{$prefix}}Address").style.display = "";
+		document.getElementById("btn{{$prefix}}List").style.display = "none";
+		document.getElementById("btn{{$prefix}}Input").style.display = "";
+		document.getElementById("hdn{{$prefix}}AddressInputType").value = "text";
+	}
+
+	function change{{$prefix}}PrefList() {
+
+		document.getElementById("cmb{{$prefix}}Address").style.display = "";
+		document.getElementById("txt{{$prefix}}Address").style.display = "none";
+		document.getElementById("btn{{$prefix}}List").style.display = "";
+		document.getElementById("btn{{$prefix}}Input").style.display = "none";
+		document.getElementById("hdn{{$prefix}}AddressInputType").value = "list";
+	}
+	//]]>
+</script>
+<select name="cmb{{$prefix}}Address1" class="cmb_add" id="cmb{{$prefix}}Address" {{if !empty($selectVal)}}style="display:none;"{{/if}}>
+	{{prefecture_list val=$selectVal}}
+</select>
+<input name="txt{{$prefix}}Address1" id="txt{{$prefix}}Address" type="text" maxlength="50" class="txt_add" style="{{if empty($selectVal)}}display:none;{{/if}}" value="{{$selectVal}}">&nbsp;
+<span style="font-size:smaller">(都道府県)</span>&nbsp;
+<input type="button" id="btn{{$prefix}}List" value="直接入力する" style="font-size:Smaller;width:110px;{{if !empty($selectVal)}}display:none;{{/if}}"  onClick="change{{$prefix}}PrefInput()">
+<input type="button" id="btn{{$prefix}}Input" value="一覧から選択する" style="font-size:Smaller;width:110px;{{if empty($selectVal)}}display:none;{{/if}}"  onClick="change{{$prefix}}PrefList()">
+<input type="hidden" name="hdn{{$prefix}}AddressInputType" id="hdn{{$prefix}}AddressInputType" value="{{if !empty($selectVal)}}text{{else}}list{{/if}}">

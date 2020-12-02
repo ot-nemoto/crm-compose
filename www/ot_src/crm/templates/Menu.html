@@ -1,0 +1,76 @@
+{{include file='./common/Header.html'}}
+</head>
+<body onload="document.forms[0].elements[0].focus();">
+    <div align="center" style="border: medium inset #008000; background-color: #339933; font-family: &#39;ＭＳ Ｐゴシック&#39;, Arial, sans-serif; font-size: large; font-weight: bold; color: #FFFFFF">
+        <span id="TitleControl_TitleLabel">顧客管理ツール&nbsp;&nbsp;メニュー画面</span>
+    </div>
+    <hr>
+        {{include file='./common/SearchBox.html'}}
+    <hr>
+    <form name="form1" method="post" action="?ac=SearchMix" id="form1">
+        <div>
+            <div id="MenuPanel">
+                <table width="100%">
+                    <tr>
+                        <td align="center">
+                            <table cellspacing="5">
+                                <tr>
+                                    <td colspan="2" style="font-size:smaller">
+                                        <span id="GuidanceLabel" style="color:#009900;">以下のリンクをクリックすることで、顧客連絡先の参照や管理を行うことができます。</span>
+                                    <br>
+                                    <br>
+                                    </td>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left;padding:20px 0px 0px 0px" colspan="2"><strong>【登録済みデータの検索・確認】</strong></tr>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left">
+                                        <a href="?ac=SearchCompany">会社の検索</a>
+                                    <br>
+                                    </td>
+                                    <td style="color:#009900;font-size:smaller;text-align:left">(登録されている会社の検索を行います。) </td>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left">
+                                        <a href="?ac=SearchPerson">担当者の検索</a>
+                                    <br>
+                                    </td>
+                                    <td style="color:#009900;font-size:smaller;text-align:left">(登録されている担当者の検索を行います。) </td>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left;padding:20px 0px 0px 0px" colspan="2">
+                                        <strong>【新しいデータの登録】</strong><br/>
+                                        <font color="red">既に登録済みでないか「会社の検索」や「担当者の検索」メニューで確認してから登録してください。</font>
+                                    </tr>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left">
+                                        <a href="?ac=Company&mode=mod">会社の登録</a>
+                                    <br>
+                                    </td>
+                                    <td style="color:#009900;font-size:smaller;text-align:left">(新しい会社の情報を登録します。)</td>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left">
+                                        <a href="?ac=Person&mode=mod">担当者の登録</a>
+                                    </td>
+                                    <td style="color:#009900;font-size:smaller;text-align:left">(新しい担当者の情報を登録します。) </td>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left;padding:20px 0px 0px 0px" colspan="2"><strong>【その他】</strong></tr>
+                                </tr>
+                                <tr style="vertical-align:top">
+                                    <td style="text-align:left">
+                                        <a href="?ac=Menu">連絡イベント管理</a>
+                                    </td>
+                                    <td style="color:#009900;font-size:smaller;text-align:left">(連絡イベントを管理します。)※工事中 </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+{{include file='./common/Footer.html'}}

@@ -1,0 +1,34 @@
+<br/>
+{{if !empty($personList)}}
+<span style="font-size:smaller;font-weight:bold">【この会社の担当者一覧】</span>&nbsp;&nbsp;
+<table cellspacing="1" cellpadding="2" rules="all" border="1" style="color:Black;border-color:#333333;border-width:1px;border-style:Inset;font-size:Small;width:98%;">
+	<tr style="color:Black;background-color:#CCFFCC;">
+		<th scope="col">No</th>
+		<th scope="col">担当者名</th>
+		<th scope="col">電話番号</th>
+		<th scope="col">FAX番号</th>
+		<th scope="col">メールアドレス</th>
+	</tr>
+	{{foreach from=$personList item=v name=pList}}
+	<tr style="background-color:{{cycle values="#FFFFFF,#f0f8ff"}}">
+		<td>
+			<span>{{$smarty.foreach.pList.iteration}}</span>
+		</td>
+		<td>
+			<a href="?ac=Person&pid={{$v.PersonID}}{{if !empty($smarty.get.mode)}}&mode={{$smarty.get.mode}}{{/if}}">{{$v.Name}}</a>
+		</td>
+		<td>
+			<span>{{$v.TelephoneNumber1}}</span>
+		<br />
+			<span>{{$v.TelephoneNumber2}}</span>
+		</td>
+		<td>
+			<span>{{$v.FaxNumber1}}</span>
+		</td>
+		<td>
+			<a href="mailto:{{$v.MailAddress1}}">{{$v.MailAddress1}}</a>
+		</td>
+	</tr>
+	{{/foreach}}
+</table>
+{{/if}}

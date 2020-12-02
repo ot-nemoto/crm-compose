@@ -1,0 +1,113 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+<form name="form1" method="post" action="?ac=RegistPerson&mode={{$smarty.get.mode}}&pid={{$smarty.get.pid}}&cid={{$companyInfo.CompanyID}}">
+    <div>
+        <div id="title">
+            <span id="HeaderTitleLabel">顧客管理ツール&nbsp;&nbsp;担当者画面</span>
+        </div>
+        {{include file='./common/SiteLink.html'}}
+        <hr>
+        <div id="info">
+            &nbsp;&nbsp;■&nbsp;<span>以下の各項目を入力して『この担当者を登録する』ボタンをクリックすることで担当者の情報を登録することができます。</span><br/>
+        </div>
+        <div style="text-align:left;margin:10px 0px 0px 20px">
+            <font color="#ff6347">
+                会社情報が登録済みにも関わらず更にこの画面で会社情報を入力すると、会社情報が「重複登録」されてしまいます。<br/>
+                登録済みの会社の場合は会社情報を『選択』して登録を行ってください(検索して登録の有無を確認してください)。
+            </font>
+        </div>
+        <div style="text-align:left;margin:10px 0px 0px 20px">
+            <font color="#4169E1">
+                【登録時の基本ルール】<br/>
+                所在地情報(郵便番号, 住所)は「会社情報」欄(本社や代表と判断の場合)または「部署情報」欄に入力します。<br/>
+                 └ 入力時にWebサイト等で確認して代表情報等も入力いただけると利用時に非常に助かります。<br/>
+                連絡先情報(電話番号, FAX番号, メールアドレス)は「担当者情報」欄に入力します。<br/>
+            </font>
+        </div>
+        <div id="main">
+            {{include file='./common/MessageArea.html'}}
+            <div id="left_content">
+                ■会社情報　(
+                <a href="?ac=SearchCompany&mode=select&pid={{$smarty.get.pid}}">選択</a>
+                {{if !empty($companyInfo.CompanyID)}}
+                    &nbsp;&nbsp;-&nbsp;&nbsp;
+                    <a href="?ac=Person&mode=mod&pid={{$smarty.get.pid}}&cid=">新規登録</a>
+                {{/if}}
+                )
+                {{if !empty($companyInfo.CompanyID)}}
+                    {{include file='./parts/CompanyView.html'}}
+                {{else}}
+                    {{include file='./parts/CompanyInput.html'}}
+                {{/if}}
+            </div>
+            <div id="right_content">
+                <br />
+                <select name="cmbSectionList" onChange="sectionListOnChange(this)">
+                   {{html_options options=$cmbSectionList selected=$sectionInfo.SectionID}}
+                </select>
+                <br />
+                <br />
+                {{foreach from=$sectionList item=section}}
+                    {{if $section["SectionID"] == $sectionInfo["SectionID"]}}
+                        <div id="sid_{{$section.SectionID}}">
+                        {{assign var='sectionDispFlg' value='true'}}
+                    {{else}}
+                        <div id="sid_{{$section.SectionID}}" style="display:none;">
+                    {{/if}}
+                        {{include file='./parts/SectionView.html' sectionInfo=$section}}
+                    </div>
+                {{/foreach}}
+                {{if empty($sectionDispFlg)}}
+                    <div id="sid_">
+                {{else}}
+                    <div id="sid_" style="display:none;">
+                {{/if}}
+                {{if empty($sectionInfo.SectionID)}}
+                    {{include file='./parts/SectionInput.html' sectionInfo=$sectionInfo}}
+                {{else}}
+                    {{include file='./parts/SectionInput.html' sectionInfo=""}}
+                {{/if}}
+                </div>
+                <br />
+                {{include file='./parts/PersonInput.html'}}
+            </div>
+            <div id="clear">
+            </div>
+            <input type="hidden" name="cid" value="{{$companyInfo.CompanyID}}" />
+            <input type="hidden" name="sid" id="sid" value="{{$sectionInfo.SectionID}}" />
+            <input type="hidden" name="pid" value="{{$personInfo.PersonID}}" />
+        </div>
+        <br />
+        <div id="command_panel">
+            <input type="submit" name="btnPersonRegist" value="この担当者を登録する">&nbsp;&nbsp;
+            {{if !empty($personInfo.PersonID)}}
+                <input type="submit" name="btnPersonDelete" value="この担当者を削除する" onClick="return confirm('削除します。\nよろしいですか？');">
+            {{/if}}
+        </div>
+    </div>
+    <hr>
+    {{include file='./common/SiteLink.html'}}
+    <hr>
+<script type="text/javascript">
+//<![CDATA[
+function sectionListOnChange(sel) {
+
+    document.getElementById("sid_").style.display = "none";
+
+    for(i=0;i<sel.length;i++){
+        document.getElementById("sid_" + sel.options[i].value).style.display = "none";
+    }
+
+    n = sel.selectedIndex;
+    val = sel.options[n].value;
+
+    document.getElementById("sid_"+val).style.display = "";
+    document.getElementById("sid").value = val;
+
+    return true;
+}
+//]]>
+</script>
+</form>
+{{include file='./common/Footer.html'}}

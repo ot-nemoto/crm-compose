@@ -1,0 +1,190 @@
+@charset "Shift_JIS";
+
+*{
+	margin			:0px;
+	padding			:0px;
+}
+body{
+	text-align		:center;
+}
+
+hr{
+	margin			:10px;
+}
+
+div#wrapper{
+	width			:98%;
+	margin			:9px auto;
+	text-align		:left;
+}
+
+/* MainLayout
+----------------------------------------------------------------------------- */
+div#main{
+	margin			:10px 20px;
+}
+
+div#left_content{
+	float			:left;
+	width			:49%;
+	text-align		:left;
+}
+
+div#right_content{
+	float			:left;
+	width			:49%;
+	text-align		:left;
+}
+
+div#clear{
+	clear			:both;
+}
+
+div#search_main{
+	margin			:10px 20px;
+	text-align		:left;
+}
+
+/* MessageArea
+----------------------------------------------------------------------------- */
+div#error_message_area{
+	margin			:10px 0px;
+	color			:Red;
+	background-color:#ffffcc;
+	font-weight		:bold;
+	line-height		:30px;
+}
+
+div#result_message_area{
+	margin			:10px 0px;
+	color			:Blue;
+	background-color:#eeffee;
+	font-weight		:bold;
+	line-height		:30px;
+}
+
+/* Button
+----------------------------------------------------------------------------- */
+div#command_panel{
+	text-align		:left;
+	align			:left;
+	margin			:10px 20px;
+}
+
+
+/* Heading
+----------------------------------------------------------------------------- */
+div#title{
+	border			:medium inset #008000;
+	background-color:#339933;
+	font-family		:	&#39;‚l‚r ‚oƒSƒVƒbƒN&#39;, Arial, sans-serif;
+	font-size		:large;
+	font-weight		:bold;
+	color			:#FFFFFF;
+	align			:center;
+	text-align		:center;
+}
+
+div#info{
+	margin			:0px 5px;
+	align			:left;
+	text-align		:left;
+	color			:#009900;
+	font-size		:smaller;
+	font-weight		:bold;
+}
+
+/* Table
+----------------------------------------------------------------------------- */
+table.content_table{
+	border			:outset 1.5px #a9a9a9;
+	width			:98%;
+}
+
+.content_table tr{
+}
+
+.content_table tr td.td_title{
+	border			:solid 1px #000000;
+	background-color:#CCFFCC;
+	width			:120px;
+	padding			:2px 5px;
+}
+
+.content_table tr td.td_value{
+	padding			:2px 5px;
+	border			:solid 1px #808080;
+}
+
+.content_table tr td.td_not_value{
+	border			:solid 1px #808080;
+}
+
+.content_table tr td.td_input{
+	border			:solid 1px #808080;
+}
+
+/* Linker
+----------------------------------------------------------------------------- */
+div#linker{
+	margin			:5px 15px;
+	text-align		:right;
+	font-size		:smaller;
+}
+
+div#search_area{
+	margin			:1px 15px;
+	text-align		:left;
+	align			:left;
+}
+
+/* Input
+----------------------------------------------------------------------------- */
+input[type=text]{
+	margin			:3px 2px;
+	background-color:#fffafa;
+}
+td .text_normal{
+	width			:98%;
+}
+
+td .zip1{
+	width			:40px
+}
+
+td .zip2{
+	width			:50px
+}
+
+td .text_phone{
+}
+
+td .cmb_add{
+	margin			:3px 2px;
+	background-color:#fffafa;
+}
+
+td .txt_add{
+	width			:180px
+}
+
+td .txt_area_add3{
+	margin			:3px 2px;
+	background-color:#fffafa;
+	rows			:2;
+	cols			:20;
+	width			:98%;
+}
+
+td .txt_area{
+	margin			:3px 2px;
+	background-color:#fffafa;
+	rows			:2;
+	cols			:20;
+	height			:50px;
+	width			:98%;
+}
+
+td .txt_reqire{
+	background-color:AliceBlue;
+}

@@ -1,0 +1,18 @@
+<form name="frmSearchBox" method="get" action="?" id="form1">
+	<table width="100%">
+		<tbody>
+			<tr>
+				<td align="right">
+					<div>
+					<input name="txtSearchContactName" type="text" style="width:200px;" value="{{$smarty.get.txtSearchContactName}}">&nbsp; 
+					<input type="submit" name="SearchButton" value="顧客名で検索" id="btnMenuSearch">
+					<br>
+						<span style="color:#009900;font-size:X-Small;">(何か文字を入力して、検索ボタンをクリックすると顧客の検索を行うことができます。)</span>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="hidden" name="ac" value="SearchMix">
+	<input type="hidden" name="mode" value="ref">
+</form>

@@ -3,32 +3,27 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - 8080:80
+      - 80:80
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
-      - ./www/html:/var/www/html
+    - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    - ./www:/var/www
     depends_on:
-      - php
+    - php
 
   php:
     build: ./php
     volumes:
-      - ./www/html:/var/www/html
+    - ./www:/var/www
     depends_on:
-      - db
+    - db
 
   db:
-    image: mysql:5.7
-    ports:
-      - 13306:3306
-    volumes:
-      - ./mysql/data:/var/lib/mysql
+    image: mcr.microsoft.com/mssql/server:2017-latest
     environment:
-      MYSQL_ROOT_PASSWORD: secret
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: 'Passw0rd?'
+    volumes:
+    - ./mssql/strage:/var/opt/mssql
+    - ./mssql/tmp:/tmp/mssql
     ports:
-      - 8888:80
-    depends_on:
-      - db
+    - 1433:1433

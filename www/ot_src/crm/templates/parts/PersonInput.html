@@ -1,0 +1,132 @@
+{{if !empty($personInfo.ZipCode) || !empty($personInfo.Address1) || !empty($personInfo.Address2) || !empty($personInfo.Address3) }}
+    {{assign var='checkFlg' value='true'}}
+{{/if}}
+■担当者情報　　　　　　<input id="chkPersonSpecial" type="checkbox" onclick="pOnClick()" {{if !empty($checkFlg)}}checked{{/if}}>担当者固有の追加情報を入力する
+<table class="content_table">
+    <tr>
+        <td class="td_title">
+            役職名
+        </td>
+        <td class="td_input">
+            <input name="txtPersonPersonRoleName" type="text" class="text_normal" value="{{$personInfo.PersonRoleName}}">
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            担当者名
+        </td>
+        <td class="td_input">
+            <input name="txtPersonName" type="text" class="txt_reqire text_normal" value="{{$personInfo.Name}}">
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            電話番号
+        </td>
+        <td class="td_input">
+            <input name="txtPersonTelephoneNumber1" type="text" class="text_phone" value="{{$personInfo.TelephoneNumber1}}">&nbsp;
+            <input name="txtPersonTelephoneNumber2" type="text" class="text_phone" value="{{$personInfo.TelephoneNumber2}}">
+            <div>
+                <font style="color:#4169E1; font-size:80%">
+                    ※. 名刺(等)に "直通" や "ダイヤルイン" のような補足情報がある場合はそれも入力してください。<br/>
+                    （例）00-0000-0000(直通), 000-0000-0000(PHS)
+                </font>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            FAX番号
+        </td>
+        <td class="td_input">
+            <input name="txtPersonFaxNumber1" type="text" class="text_phone" value="{{$personInfo.FaxNumber1}}">
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>メールアドレス</span>
+        </td>
+        <td class="td_input">
+            <input name="txtPersonMailAddress1" type="text" maxlength="255" class="text_normal" value="{{$personInfo.MailAddress1}}">
+            <div style="color:#009900;font-size:smaller">
+                （例）sample@opentone.co.jp
+            </div>
+        </td>
+    </tr>
+    <tr id="padd1" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>郵便番号</span>
+        </td>
+        <td class="td_input">
+            <input name="txtPersonZipCode1" type="text" maxlength="3" class="zip1" value="{{$personInfo.ZipCode|mb_substr:0:3}}">
+            &nbsp;-&nbsp;
+            <input name="txtPersonZipCode2" type="text" maxlength="4" class="zip2" value="{{$personInfo.ZipCode|mb_substr:4:4}}">
+            <div style="color:#009900;font-size:smaller">
+                （例）123-4567
+            </div>
+        </td>
+    </tr>
+    <tr id="padd2" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>住所</span>
+        </td>
+        <td class="td_input">
+            {{include file='./common/PrefectureInput.html' prefix='Person' selectVal=$personInfo.Address1}}
+            <br />
+            <input name="txtPersonAddress2" type="text" maxlength="50" class="txt_add" value="{{$personInfo.Address2}}">&nbsp; 
+            <span style="font-size:smaller">(市区町村)</span><br />
+            <textarea name="txtPersonAddress3" class="txt_area_add3">{{$personInfo.Address3}}</textarea><br>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            <span>備考</span>
+        </td>
+        <td class="td_input">
+            <textarea name="txtPersonNote" class="txt_area">{{$personInfo.Note}}</textarea>
+            <div>
+                <div style="color:#009900;font-size:smaller">
+                    全角・半角を問わず、500文字まで入力することができます。
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td class="td_title">
+            退職日
+        </td>
+        <td class="td_input">
+            <input id="chkPersonRetireFlag" type="checkbox" name="chkPersonRetireFlag" {{if $personInfo.RetireFlag}}checked{{/if}}>退職済&nbsp;&nbsp; 
+            {{if !empty($personInfo.RetireDate)}}
+                {{if method_exists($personInfo.RetireDate, 'format')}}
+                    <input name="txtPersonRetireDate" type="text" value="{{$personInfo.RetireDate->format('Y/m/d')}}">
+                {{else}}
+                    <input name="txtPersonRetireDate" type="text" value="{{$personInfo.RetireDate}}">
+                {{/if}}
+            {{else}}
+                <input name="txtPersonRetireDate" type="text" value="">
+            {{/if}}
+            <div style="color:#009900;font-size:smaller">
+                （例）2011/02/05
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+//<![CDATA[
+function pOnClick() {
+
+    var element = document.getElementById("chkPersonSpecial"); 
+    if(element.checked){
+        document.getElementById("padd1").style.display = "";
+        document.getElementById("padd2").style.display = "";
+    }else{
+        document.getElementById("padd1").style.display = "none";
+        document.getElementById("padd2").style.display = "none";
+    }
+
+    return true;
+}
+//]]>
+</script>

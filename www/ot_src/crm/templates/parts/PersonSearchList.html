@@ -1,0 +1,107 @@
+<div id="CompanySearchResultPanel" style="overflow:auto;">
+	<div style="border: thin inset #006600; background-color: #99FF99;">&nbsp;
+		<span>担当者検索結果</span>
+	</div>
+	<br />
+	<div>
+		{{if !empty($personList) && is_array($personList)}}
+		<div style="font-size:smaller">
+			<span style="color:#009900;">条件に該当する担当者が{{$personCount}}件見つかりました。</span>&nbsp;
+		</div>
+			<table cellspacing="1" cellpadding="2" rules="all" border="1" id="CompanySearchResultGridView" style="color:Black;background-color:White;border-color:#333333;border-width:1px;border-style:Inset;font-size:Small;;width:100%">
+				<tr style="color:Black;background-color:#CCFFCC;font-weight:normal;">
+					{{if empty($smarty.get.mode) }}
+						<th scope="col" width="4%">&nbsp;</th>
+					{{/if }}
+					<th scope="col" width="10%">氏名</th>
+					<th scope="col" width="20%">会社 / 部署</th>
+					<th scope="col" width="15%">電話 / FAX</th>
+					<th scope="col" width="15%">メールアドレス</th>
+					<th scope="col" width="20%">住所</th>
+					<th scope="col" width="20%">備考</th>
+				</tr>
+				{{foreach from=$personList item=v}}
+				<tr style="background-color:{{cycle values="#f0f8ff,#FFFFFF" advance=false}};">
+					{{if empty($smarty.get.mode) }}
+					<td rowspan="2" style="text-align:center;">
+						<a href="?ac=Person&mode=mod&pid={{$v.PersonID}}">編集</a>
+					</td>
+					{{/if }}
+					<td rowspan="2">
+						<a href="?ac=Person&mode=ref&pid={{$v.PersonID}}">{{$v.Name}}</a>
+					</td>
+					<td rowspan="2">
+						<a href="?ac=Company&mode=ref&cid={{$v.CompanyID}}">{{$v.CompanyName}}</a>
+						<br />
+						{{if !empty($v.SectionName)}}
+						(<a href="?ac=Section&mode=ref&sid={{$v.SectionID}}">{{$v.SectionName}}</a>)
+						{{/if}}
+					</td>
+					<td>
+						{{if !empty($v.TelephoneNumber1) || !empty($v.TelephoneNumber2) }}
+							<span>{{$v.TelephoneNumber1}}</span>
+							<br />
+							<span>{{$v.TelephoneNumber2}}</span>
+						{{elseif !empty($v.SectionTelephoneNumber1) || !empty($v.SectionTelephoneNumber2) }}
+							<span>{{$v.SectionTelephoneNumber1}}</span>
+							<br />
+							<span>{{$v.SectionTelephoneNumber2}}</span>
+						{{else}}
+							<span>{{$v.CompanyTelephoneNumber1}}</span>
+							<br />
+							<span>{{$v.CompanyTelephoneNumber2}}</span>
+						{{/if}}
+					</td>
+					<td rowspan="2">
+						<span>{{$v.MailAddress1}}</span>
+					</td>
+					<td rowspan="2">
+						{{if !empty($v.ZipCode) || !empty($v.Address1) || !empty($v.Address2) || !empty($v.Address3) }}
+							<span>{{$v.ZipCode}}</span>&nbsp;
+							<span>{{$v.Address1}}</span>&nbsp;
+							<span>{{$v.Address2}}</span>
+							<br>
+							<span>{{$v.Address3}}</span>
+						{{elseif !empty($v.SectionZipCode) || !empty($v.SectionAddress1) || !empty($v.SectionAddress2) || !empty($v.SectionAddress3)}}
+							<span>{{$v.SectionZipCode}}</span>&nbsp;
+							<span>{{$v.SectionAddress1}}</span>&nbsp;
+							<span>{{$v.SectionAddress2}}</span>
+							<br>
+							<span>{{$v.SectionAddress3}}</span>
+						{{else}}
+							<span>{{$v.CompanyZipCode}}</span>&nbsp;
+							<span>{{$v.CompanyAddress1}}</span>&nbsp;
+							<span>{{$v.CompanyAddress2}}</span>
+							<br>
+							<span>{{$v.CompanyAddress3}}</span>
+						{{/if}}
+					</td>
+					<td rowspan="2">
+						<span>
+							{{$v.Note|mb_truncate:50:"..."}}
+						</span>
+					</td>
+				</tr>
+				<tr style="background-color:{{cycle values="#f0f8ff,#FFFFFF"}};">
+					<td>
+						{{if !empty($v.FaxNumber1) }}
+							<span>{{$v.FaxNumber1}}</span>
+						{{elseif !empty($v.SectionFaxNumber1)}}
+							<span>{{$v.SectionFaxNumber1}}</span>
+						{{else}}
+							<span>{{$v.CompanyFaxNumber1}}&nbsp;</span>
+						{{/if}}
+					</td>
+				</tr>
+				{{/foreach}}
+			</table>
+			<div align="left">
+				{{paging target='pPage' total_count=$personCount page_count=$smarty.const.PERSON_LIST_MAX_COUNT }}
+			</div>
+		{{else}}
+			対象の担当者は存在しません。
+		{{/if}}
+	</div>
+	<br>
+	<hr>
+</div>

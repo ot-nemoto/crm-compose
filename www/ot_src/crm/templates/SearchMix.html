@@ -1,0 +1,20 @@
+{{include file='./common/Header.html'}}
+<body onload="document.forms[0].elements[0].focus();">
+	<div>
+		<div id="title">
+			<span>顧客管理ツール&nbsp;&nbsp;顧客検索画面</span>
+		</div>
+		{{include file='./common/SiteLink.html'}}
+		<hr>
+		{{include file='./common/SearchBox.html'}}
+	</div>
+	<hr>
+	<div id="search_area">
+		{{include file='./parts/CompanySearchList.html'}}
+		{{include file='./parts/SectionSearchList.html'}}
+		{{include file='./parts/PersonSearchList.html'}}
+	</div>
+	<div>
+		{{include file='./common/SiteLink.html'}}
+	</div>
+{{include file='./common/Footer.html'}}

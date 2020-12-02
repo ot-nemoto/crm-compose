@@ -1,0 +1,83 @@
+<div id="SearchResultPanel">
+	<div>
+		<div id="CompanySearchResultPanel" style="overflow:auto;">
+			<div style="border: thin inset #006600; background-color: #99FF99;">&nbsp;
+				<span>会社検索結果</span>
+			</div>
+			{{if !empty($companyIndexList) && is_array($companyIndexList)}}
+				{{foreach from=$companyIndexList key=k item=v}}
+					<a href="?ac=SearchCompany&idx={{$k}}&sort=name&mode={{$smarty.get.mode}}">{{$v}}</a>&nbsp;&nbsp;
+				{{/foreach}}
+				<br />
+			{{/if}}
+			<br />
+			<div>
+				{{if !empty($companyList) && is_array($companyList)}}
+				<div style="font-size:smaller">
+					<span style="color:#009900;">条件に該当する会社が{{$companyCount}}件見つかりました。</span>&nbsp;
+				</div>
+					<table cellspacing="1" cellpadding="2" rules="all" border="1" style="color:Black;background-color:White;border-color:#333333;border-width:1px;border-style:Inset;font-size:Small;width:100%">
+						<tr style="color:Black;background-color:#CCFFCC;font-weight:normal;">
+							{{if empty($smarty.get.mode)}}
+								<th scope="col" width="4%">&nbsp;</th>
+							{{/if }}
+							<th scope="col" width="20%">会社名</th>
+							<th scope="col" width="10%">電話 / FAX</th>
+							<th scope="col" width="15%">メールアドレス</th>
+							<th scope="col" width="30%">住所</th>
+							<th scope="col" width="25%">備考</th>
+						</tr>
+						{{foreach from=$companyList item=v}}
+						<tr style="background-color:{{cycle values="#f0f8ff,#FFFFFF" advance=false}};">
+							{{if empty($smarty.get.mode)}}
+							<td rowspan="2" style="text-align:center;">
+								<a href="?ac=Company&mode=mod&cid={{$v.CompanyID}}">編集</a>
+							</td>
+							{{/if }}
+							<td rowspan="2">
+								{{if !empty($smarty.get.mode) && $smarty.get.mode == "select" }}
+									<a href="?ac=Person&mode=mod&cid={{$v.CompanyID}}&pid={{$smarty.get.pid}}">{{$v.CompanyName}}</a>
+								{{else}}
+									<a href="?ac=Company&mode=ref&cid={{$v.CompanyID}}">{{$v.CompanyName}}</a>
+								{{/if}}
+							</td>
+							<td>
+								<span>{{$v.TelephoneNumber1}}</span>
+								<br />
+								<span>{{$v.TelephoneNumber2}}</span>
+							</td>
+							<td rowspan="2">
+								<span>{{$v.MailAddress1}}</span>
+							</td>
+							<td rowspan="2">
+								<span>{{$v.ZipCode}}</span>&nbsp;
+								<span>{{$v.Address1}}</span>&nbsp;
+								<span>{{$v.Address2}}</span>
+								<br>
+								<span>{{$v.Address3}}</span>
+							</td>
+							<td rowspan="2">
+								<span>
+									{{$v.Note|mb_truncate:50:"..."}}
+								</span>
+							</td>
+						</tr>
+						<tr style="background-color:{{cycle values="#f0f8ff,#FFFFFF"}};">
+							<td>
+								<span>{{$v.FaxNumber1}}&nbsp;</span>
+							</td>
+						</tr>
+						{{/foreach}}
+					</table>
+					<div align="left">
+						{{paging target='cPage' total_count=$companyCount page_count=$smarty.const.COMPANY_LIST_MAX_COUNT }}
+					</div>
+				{{else}}
+					対象の会社は存在しません。
+				{{/if}}
+			</div>
+		<br>
+		<hr>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+{{if !empty($errorList)}}
+<div id="error_message_area">
+	{{foreach from=$errorList item=v}}
+		{{get_message key=$v}}<br />
+	{{/foreach}}
+</div>
+{{/if}}
+{{if !empty($resultMessage)}}
+<div id="result_message_area">
+	{{get_message key=$resultMessage}}<br />
+</div>
+{{/if}}

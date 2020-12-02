@@ -1,0 +1,36 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+	<form name="form1" method="get" action="">
+		<div id="title">
+			<span id="TitleControl_TitleLabel">顧客管理ツール&nbsp;&nbsp;会社検索画面</span>
+		</div>
+		{{include file='./common/SiteLink.html'}}
+		<!-- 検索条件パネル -->
+		<div id="search_area">
+			<br/>検索ワード：
+			<input name="txtSearchName" type="text" style="width:200px;" value="{{$smarty.get.txtSearchName}}">&nbsp;
+			<input type="submit" name="CustomerSearchButton" value="左の条件で検索" id="CustomerSearchButton">
+		</div>
+		<div id="search_main">
+			<div id="SearchSortPanel">
+				{{if $smarty.get.sort == "name"}}
+					<a href="?ac=SearchCompany&mode={{$smarty.get.mode}}&pid={{$smarty.get.pid}}&idx={{$smarty.get.idx}}&txtSearchName={{$smarty.get.txtSearchName}}">更新日時順で並び替える</a>
+				{{else}}
+					<a href="?ac=SearchCompany&mode={{$smarty.get.mode}}&pid={{$smarty.get.pid}}&idx={{$smarty.get.idx}}&txtSearchName={{$smarty.get.txtSearchName}}&sort=name">会社名順で並び替える</a>
+				{{/if}}
+			</div>
+			<hr>
+			<div>
+				{{include file='./parts/CompanySearchList.html'}}
+			</div>
+		</div>
+		<div>
+			{{include file='./common/SiteLink.html'}}
+		</div>
+		<input type="hidden" name="ac" value="SearchCompany" />
+		<input type="hidden" name="mode" value="{{$smarty.get.mode}}" />
+		<input type="hidden" name="sort" value="name" />
+		<input type="hidden" name="pid" value="{{$smarty.get.pid}}" />
+	</form>
+{{include file='./common/Footer.html'}}

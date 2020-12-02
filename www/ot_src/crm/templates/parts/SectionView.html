@@ -1,0 +1,71 @@
+{{if !empty($sectionInfo)}}
+■部署情報<br />
+<table class="content_table">
+	<tr>
+		<td class="td_title">
+			<span>部署名</span>
+		</td>
+		<td class="td_value">
+			<span>{{$sectionInfo.SectionName}}</span>
+		</td>
+	</tr>
+	{{if !empty($sectionInfo.ZipCode) || !empty($sectionInfo.Address1) || !empty($sectionInfo.Address2) || !empty($sectionInfo.Address3) }}
+	<tr>
+		<td class="td_title">
+			<span>住所</span>
+		</td>
+		<td class="td_value">
+			<span>{{$sectionInfo.ZipCode}}</span>
+			<br />
+			<span>{{$sectionInfo.Address1}}{{$sectionInfo.Address2}}{{$sectionInfo.Address3}}</span>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($sectionInfo.TelephoneNumber1) || !empty($sectionInfo.TelephoneNumber2) }}
+	<tr>
+		<td class="td_title">
+			<span>電話番号</span>
+		</td>
+		<td class="td_value">
+			<span>
+			{{$sectionInfo.TelephoneNumber1}}
+			{{if !empty($sectionInfo.TelephoneNumber2)}}
+				 / {{$sectionInfo.TelephoneNumber2}}
+			{{/if}}
+			</span>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($sectionInfo.FaxNumber1) }}
+	<tr>
+		<td class="td_title">
+			<span>FAX番号</span>
+		</td>
+		<td class="td_value">
+			<span>{{$sectionInfo.FaxNumber1}}</span>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($sectionInfo.MailAddress1) }}
+	<tr>
+		<td class="td_title">
+			<span>メールアドレス</span>
+		</td>
+		<td class="td_value">
+			<span>{{$sectionInfo.MailAddress1}}</span>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($sectionInfo.Note) }}
+	<tr>
+		<td class="td_title">
+			<span>備考</span>
+		</td>
+		<td class="td_not_value">
+			<textarea name="txtbNote" rows="2" cols="20" readonly="readonly" style="height:50px;width:400px;">{{$sectionInfo.Note}}</textarea>
+		</td>
+	</tr>
+	{{/if}}
+</table>
+<br />
+{{/if}}

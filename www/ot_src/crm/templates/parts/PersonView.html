@@ -1,0 +1,85 @@
+■担当者情報<br />
+<table class="content_table">
+	<tr>
+		<td class="td_title">
+			<span>役職</span>
+		</td>
+		<td class="td_value">
+			<span>{{$personInfo.PersonRoleName}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>担当者名</span>
+		</td>
+		<td class="td_value">
+			<span>{{$personInfo.Name}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>電話番号</span>
+		</td>
+		<td class="td_value">
+			<span>
+			{{$personInfo.TelephoneNumber1}}
+			{{if !empty($personInfo.TelephoneNumber2)}}
+				 / {{$personInfo.TelephoneNumber2}}
+			{{/if}}
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>FAX番号</span>
+		</td>
+		<td class="td_value">
+			<span>{{$personInfo.FaxNumber1}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>メールアドレス</span>
+		</td>
+		<td class="td_value">
+			<span>{{$personInfo.MailAddress1}}</span>
+		</td>
+	</tr>
+	{{if !empty($personInfo.ZipCode) || !empty($personInfo.Address1) || !empty($personInfo.Address2) || !empty($personInfo.Address3) }}
+	<tr>
+		<td class="td_title">
+			<span>住所</span>
+		</td>
+		<td class="td_value">
+			<span>{{$personInfo.ZipCode}}</span>
+			<br />
+			<span>{{$personInfo.Address1}}{{$personInfo.Address2}}{{$personInfo.Address3}}</span>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($personInfo.Note) }}
+	<tr>
+		<td class="td_title">
+			<span>備考</span>
+		</td>
+		<td class="td_not_value">
+			<textarea name="txtbNote" rows="2" cols="20" readonly="readonly" style="height:50px;width:400px;">{{$personInfo.Note}}</textarea>
+		</td>
+	</tr>
+	{{/if}}
+	{{if !empty($personInfo.RetireFlag)}}
+	<tr>
+		<td class="td_title">
+			<span>退職</span>
+		</td>
+		<td class="td_value">
+			<span>
+			{{if !empty($personInfo.RetireDate)}}
+				{{$personInfo.RetireDate->format('Y/m/d')}}
+			{{/if}}
+			退職済
+			</span>
+		</td>
+	</tr>
+	{{/if}}
+</table>

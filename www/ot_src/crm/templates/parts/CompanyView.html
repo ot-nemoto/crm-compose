@@ -1,0 +1,77 @@
+{{if !empty($companyInfo)}}
+<table class="content_table">
+	<tr>
+		<td class="td_title">
+			<span>会社名</span>
+		</td>
+		<td class="td_value">
+			<span>{{$companyInfo.CompanyName}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>略称</span>
+		</td>
+		<td class="td_value">
+			<span>{{$companyInfo.ShortCompanyName}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>頭文字</span>
+		</td>
+		<td class="td_value">
+			<span>{{get_ini_value key=$companyInfo.IndexCompanyName file='company_index'}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>住所</span>
+		</td>
+		<td class="td_value">
+			<span>{{$companyInfo.ZipCode}}</span>
+			<br />
+			<span>{{$companyInfo.Address1}}{{$companyInfo.Address2}}{{$companyInfo.Address3}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>電話番号</span>
+		</td>
+		<td class="td_value">
+			<span>
+			{{$companyInfo.TelephoneNumber1}}
+			{{if !empty($companyInfo.TelephoneNumber2)}}
+				 / {{$companyInfo.TelephoneNumber2}}
+			{{/if}}
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>FAX番号</span>
+		</td>
+		<td class="td_value">
+			<span>{{$companyInfo.FaxNumber1}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>メールアドレス</span>
+		</td>
+		<td class="td_value">
+			<span>{{$companyInfo.MailAddress1}}</span>
+		</td>
+	</tr>
+	<tr>
+		<td class="td_title">
+			<span>備考</span>
+		</td>
+		<td class="td_not_value">
+			<textarea name="txtbNote" rows="2" cols="20" readonly="readonly" style="height:50px;width:400px;">{{$companyInfo.Note}}</textarea>
+		</td>
+	</tr>
+</table>
+{{else}}
+なし
+{{/if}}

@@ -1,0 +1,122 @@
+{{if !empty($sectionInfo.ZipCode) || 
+        !empty($sectionInfo.Address1) || 
+        !empty($sectionInfo.Address2) || 
+        !empty($sectionInfo.Address3) || 
+        !empty($sectionInfo.TelephoneNumber1) || 
+        !empty($sectionInfo.TelephoneNumber2) || 
+        !empty($sectionInfo.FaxNumber1) || 
+        !empty($sectionInfo.MailAddress1) || 
+        !empty($sectionInfo.Note) }}
+    {{assign var='checkFlg' value='true'}}
+{{/if}}
+■部署情報　　　　　　　&nbsp;<input id="chkSectionSpecial" type="checkbox" onclick="sOnClick()" {{if !empty($checkFlg)}}checked{{/if}}>部署固有の追加情報を入力する
+<div>
+    <font style="color:#4169E1; font-size:80%">
+        1. 次の場合は必ず入力してください。<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;● 登録しようとする郵便番号や住所が「会社情報」欄と異なる場合<br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;● 登録しようとする郵便番号や住所が「会社情報」欄に未入力の場合<br/>
+        2. 電話番号, FAX番号, メールアドレスは「部署情報」欄には入力しなくて構いません。
+    </font>
+</div>
+<table class="content_table">
+    <tr>
+        <td class="td_title">
+            部署名
+        </td>
+        <td class="td_input">
+            <input name="txtSectionName" type="text" class="txt_reqire text_normal" value="{{$sectionInfo.SectionName}}">
+        </td>
+    </tr>
+    <tr id="sadd1" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>郵便番号</span>
+        </td>
+        <td class="td_input">
+            <input name="txtSectionZipCode1" type="text" maxlength="3" class="zip1" value="{{$sectionInfo.ZipCode|mb_substr:0:3}}">
+            &nbsp;-&nbsp;
+            <input name="txtSectionZipCode2" type="text" maxlength="4" class="zip2" value="{{$sectionInfo.ZipCode|mb_substr:4:4}}">
+            <div style="color:#009900;font-size:smaller">
+                （例）123-4567
+            </div>
+        </td>
+    </tr>
+    <tr id="sadd2" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>住所</span>
+        </td>
+        <td class="td_input">
+            {{include file='./common/PrefectureInput.html' prefix='Section' selectVal=$sectionInfo.Address1}}
+            <br />
+            <input name="txtSectionAddress2" type="text" maxlength="50" class="txt_add" value="{{$sectionInfo.Address2}}">&nbsp; 
+            <span style="font-size:smaller">(市区町村)</span><br />
+            <textarea name="txtSectionAddress3" class="txt_area_add3">{{$sectionInfo.Address3}}</textarea><br>
+        </td>
+    </tr>
+    <tr id="sadd3" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            電話番号
+        </td>
+        <td class="td_input">
+            <input name="txtSectionTelephoneNumber1" type="text" class="text_phone" value="{{$sectionInfo.TelephoneNumber1}}">&nbsp;
+            <input name="txtSectionTelephoneNumber2" type="text" class="text_phone" value="{{$sectionInfo.TelephoneNumber2}}">
+        </td>
+    </tr>
+    <tr id="sadd4" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            FAX番号
+        </td>
+        <td class="td_input">
+            <input name="txtSectionFaxNumber1" type="text" class="text_phone" value="{{$sectionInfo.FaxNumber1}}">
+        </td>
+    </tr>
+    <tr id="sadd5" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>メールアドレス</span>
+        </td>
+        <td class="td_input">
+            <input name="txtSectionMailAddress1" maxlength="255" class="text_normal" type="text" value="{{$sectionInfo.MailAddress1}}">
+            <div style="color:#009900;font-size:smaller">
+                （例）sample@opentone.co.jp
+            </div>
+        </td>
+    </tr>
+    <tr id="sadd6" {{if empty($checkFlg)}}style="display:none;"{{/if}}>
+        <td class="td_title">
+            <span>備考</span>
+        </td>
+        <td class="td_input">
+            <textarea name="txtSectionNote" class="txt_area">{{$sectionInfo.Note}}</textarea>
+            <div>
+                <div style="color:#009900;font-size:smaller">
+                    全角・半角を問わず、500文字まで入力することができます。
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+//<![CDATA[
+function sOnClick() {
+    var element = document.getElementById("chkSectionSpecial"); 
+//alert(document.getElementById("sadd1").style.display);
+    if(element.checked){
+        document.getElementById("sadd1").style.display = "";
+        document.getElementById("sadd2").style.display = "";
+        document.getElementById("sadd3").style.display = "";
+        document.getElementById("sadd4").style.display = "";
+        document.getElementById("sadd5").style.display = "";
+        document.getElementById("sadd6").style.display = "";
+    }else{
+        document.getElementById("sadd1").style.display = "none";
+        document.getElementById("sadd2").style.display = "none";
+        document.getElementById("sadd3").style.display = "none";
+        document.getElementById("sadd4").style.display = "none";
+        document.getElementById("sadd5").style.display = "none";
+        document.getElementById("sadd6").style.display = "none";
+    }
+
+    return true;
+}
+//]]>
+</script>

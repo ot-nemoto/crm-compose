@@ -1,0 +1,36 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+	<form name="form1" method="post" action="?ac=Section&sid={{$smarty.get.sid}}&mode=mod">
+		<div id="title">
+			<span id="HeaderControl1_TitleControl1_TitleLabel">顧客管理ツール&nbsp;&nbsp;部署画面</span>
+		</div>
+		{{include file='./common/SiteLink.html'}}
+		<hr />
+		<div id="info">
+			<span id="InformationTitleControl_TitleLabel">『この部署の情報を編集する』ボタンをクリックすると、会社の情報の編集をはじめます。</span>
+		</div>
+		<div id="main">
+			<div id="left_content">
+				■会社情報
+				{{include file='./parts/CompanyView.html'}}
+			</div>
+			<div id="right_content">
+				{{include file='./parts/SectionView.html'}}
+				{{include file='./parts/PersonList.html'}}
+			</div>
+			<div id="clear">
+			</div>
+		</div>
+		<br />
+		<div id="command_panel">
+			<input type="submit" name="StartCompanyEditButton" value="この部署の情報を編集する" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;StartCompanyEditButton&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, false))" id="StartCompanyEditButton" />
+			<br />
+			<br />
+			<a href="javascript:history.back();">戻る</a>
+		</div>
+		<hr />
+		{{include file='./common/SiteLink.html'}}
+		<hr />
+	</form>
+{{include file='./common/Footer.html'}}

@@ -1,0 +1,43 @@
+{{include file='./common/Header.html'}}
+</head>
+<body>
+	<form name="form1" method="post" action="?ac=RegistSection&sid={{$smarty.get.sid}}&mode=mod" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+		<div id="title">
+			<span id="HeaderControl1_TitleControl1_TitleLabel">顧客管理ツール&nbsp;&nbsp;部署画面</span>
+		</div>
+		{{include file='./common/SiteLink.html'}}
+		<hr />
+		<div>
+		<div id="info">
+			<span id="InformationTitleControl_TitleLabel">『この部署を登録する』ボタンをクリックすると、部署情報を登録します。</span>
+		</div>
+		<div id="main">
+			{{include file='./common/MessageArea.html'}}
+			<br />
+			<div id="left_content">
+				■会社情報
+				{{include file='./parts/CompanyView.html'}}
+			</div>
+			<div id="right_content">
+				{{include file='./parts/SectionInput.html'}}
+				{{include file='./parts/PersonList.html'}}
+			</div>
+			<div id="clear">
+			</div>
+			<input type="hidden" name="cid" value="{{$companyInfo.CompanyID}}" />
+			<input type="hidden" name="sid" id="sid" value="{{$sectionInfo.SectionID}}" />
+		</div>
+		<br />
+		<div>
+		<div id="command_panel">
+			<input type="submit" name="btnSectionRegist" value="この部署を登録する"/>
+			{{if !empty($sectionInfo.SectionID)}}
+				<input type="submit" name="btnSectionDelete" value="この部署を削除する" onClick="return confirm('削除します。\nよろしいですか？');">
+			{{/if}}
+			</div>
+		</div>
+		<hr />
+		{{include file='./common/SiteLink.html'}}
+		<hr />
+	</form>
+{{include file='./common/Footer.html'}}

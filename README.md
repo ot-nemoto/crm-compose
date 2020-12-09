@@ -2,11 +2,14 @@
 
 ## 事前準備
 
-Smartyコンパイルキャッシュのディレクトリのパーミッションを修正
+- Smartyコンパイルキャッシュのディレクトリのパーミッションを修正
 
 ```sh
 sudo chown -R 33:33 www/ot_src/crm/work/
 ```
+
+- インポートするSQLServerのバックアップをmssqlディレクトリへ配置
+  - 以下は `CustomerManagementFrom110815.BAK` というバックアップファイルが前提
 
 ## 起動
 

@@ -1,6 +1,4 @@
-/mssql/strage/*
-!/mssql/strage/.gitkeep
-/mssql/tmp/*
-!/mssql/tmp/.gitkeep
+/mssql/*
+!/mssql/.gitkeep
 /www/ot_src/crm/work/*
 !/www/ot_src/crm/work/.gitkeep
